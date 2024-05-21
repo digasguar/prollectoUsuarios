@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gestor tareas</title>
+</head>
+<body>
+	<h1>
+		Listado de tareas <span
+			th:text="${#strings.isEmpty(usuario)}? '': ' de ' + ${usuario}"></span>
+	</h1>
+	
+	<a href="/user-form">Añadir nuevo usuario</a>
+	
+	<form action="/usuario-find" method="get">
+	    <input name="nombre" type="text" placeholder="Buscar por nombre">
+	    <input type="submit" value="Buscar">
+	</form>
+
+	<div th:if="${#arrays.isEmpty(listaUsers)}">
+		<a href="/user-form">Añadir nuevo usuario</a> <br> No existen usuarios.
+	</div>
+	<div th:unless="${#arrays.isEmpty(listaUsers)}">
+		<table>
+			<tr>
+				<th>nombre</th>
+				<th>email</th>
+				<th>cumpleaños</th>
+				<th>codPostal</th>
+			</tr>
+			<tr th:each="usuario : ${listaUsers}">
+				<td th:text="${usuario.nombre}"></td>
+				<td th:text="${usuario.email}"></td>
+				
+				<td
+					th:text="${#temporals.format(usuario.fechaNacimiento, 'dd-MM-yyyy HH:mm')}"></td>				
+				<td th:text="${usuario.codigoPostal}"></td>
+				<td><a th:href="@{/usuario-find(nombre=${usuario.nombre})}">Detalles</a></td>
+				<td><a th:href="@{/usuario-delete(name=${usuario.nombre})}">Borrar</a></td>
+
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

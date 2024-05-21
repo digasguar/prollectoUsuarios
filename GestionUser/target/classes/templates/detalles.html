@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gestor tareas</title>
+</head>
+<body>
+	<h1>
+		Detalle tarea
+	</h1>
+	<p>
+		<strong>Nombre: </strong><span th:text="${usuario.nombre}"></span>
+	</p>
+	<p>
+		<strong>Apellidos: </strong><span th:text="${usuario.apellidos}"></span>
+	</p>
+	<p>
+		<strong>DNI: </strong><span th:text="${usuario.dni}"></span>
+	</p>
+	<p>
+		<strong>email: </strong><span th:text="${usuario.email}"></span>
+	</p>
+	<p>
+		<strong>telefono </strong><span th:text="${usuario.telefonoMovil}"></span>
+	</p>
+	<p>
+		<td	th:text="${#temporals.format(usuario.fechaNacimiento, 'dd-MM-yyyy HH:mm')}"></td>
+		</p>
+	<p>
+		<strong>Codigo postal </strong><span th:text="${usuario.codigoPostal}"></span>
+	</p>
+	
+	<a th:href="@{/usuario-list}">Volver a Listado de Usuarios</a>	
+		
+</body>
+</html>
